@@ -1,0 +1,704 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Задание 25 (делители)</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="63668b52-dcbe-4238-8355-2c584815b163" class="page sans"><header><div class="page-header-icon undefined"><img class="icon" src="https://cdn3.emoji.gg/emojis/7466_keycap_twenty_five.png"/></div><h1 class="page-title">Задание 25 (делители)</h1><p class="page-description"></p></header><div class="page-body"><p id="192c9bdf-910c-4f0e-abf0-77f2360812fc" class="">
+</p><h3 id="7ab866ec-9eb3-4680-b60b-bc91e9e62254" class="">1</h3><figure id="4d6d2ef2-231c-4d36-8ae4-8ad32e6cba1e" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image13.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image13.png"/></a></figure><p id="9b430a97-e167-4016-99a8-a743fb6e8c45" class="">Ответ:</p><blockquote id="a5f1f453-61c9-473d-989d-51a98eb5f379" class="">220004 110004</blockquote><blockquote id="bf6b04ae-3df8-4d78-b35e-0a8543d2cd8d" class="">220023 73344</blockquote><blockquote id="136ab740-008d-42d6-86d0-4b24e1e107b4" class="">220024 110014</blockquote><blockquote id="9f16b0a5-0fa3-4779-b7a5-4ac400270f8b" class="">220033 20014</blockquote><blockquote id="f822e5fc-1049-41a6-8f4a-d8761ba8ceda" class="">220043 1044</blockquote><p id="5073a743-2fd0-4df8-ae90-3a00c4fbbe32" class="">
+</p><h3 id="f7bb6485-42a4-49b1-b91f-4e31e9a41a35" class="">2</h3><figure id="8cc23ea0-b77b-4933-9e4e-fe443796b374" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image11.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image11.png"/></a></figure><p id="c5a25953-954b-45ab-85a8-99f03b6f9915" class="">Ответ:</p><blockquote id="a50e8e6a-c310-4e14-b469-0b37fb7bd2e5" class="">6080069</blockquote><blockquote id="2b125289-16b4-47ce-a1ea-727140cf0bf4" class="">6080131</blockquote><blockquote id="003d6ce4-ad90-4370-924d-bb52c0b1a597" class="">6080141</blockquote><blockquote id="76ab291a-7544-4fe2-b31a-776acbd4edee" class="">6080147</blockquote><blockquote id="004c7e68-39df-404d-bc13-8bc5c7ef2fbf" class="">6080149</blockquote><blockquote id="abe5dd24-002b-45e0-92ec-47642d8d7989" class="">6080153</blockquote><blockquote id="f107870d-acc6-4988-a901-573089c7541f" class="">6080161</blockquote><p id="d590e051-ab3b-4505-9d6e-cb2a9518a17b" class="">
+</p><h3 id="26d691bd-1f10-4cd5-9514-bfe7186e84a9" class="">3</h3><figure id="6191517e-c68b-499f-bf2e-26a2e65d6611" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image23.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image23.png"/></a></figure><p id="7ca85906-b4ef-4b74-bdfd-bb99216a5562" class="">Ответ:</p><blockquote id="259c4b71-0feb-45ac-8875-d332c79736bc" class="">190226 838</blockquote><blockquote id="5e0b2009-8a98-489d-b29f-d22bd9780304" class="">190234 17294</blockquote><blockquote id="7beaaa12-dbb9-4cfc-b183-7eba78949878" class="">190238 2606</blockquote><blockquote id="ac175551-0d8c-4e14-8e40-8fba390f6ed5" class="">190252 95126</blockquote><blockquote id="c101ca93-7b67-4d84-a35a-c182bfadd48b" class="">190258 758</blockquote><p id="fd09f9a0-10fb-440a-8e31-645afce760c0" class="">
+</p><h3 id="a0e58172-6316-43e0-af6a-667404105ca1" class="">4</h3><figure id="c4de37ec-0aac-4dca-b8d1-f9376d21eab1" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image10.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image10.png"/></a></figure><p id="29709e25-2517-48d1-bbaa-d17092794dbf" class="">Ответ:</p><blockquote id="6d467c82-9868-483a-ad18-e05d68195702" class="">138309 46103</blockquote><blockquote id="ce7ef758-fb51-489b-8423-c8be25fb3faa" class="">138307 10639</blockquote><blockquote id="d02bfe42-1f33-4f49-806f-b57daf4c82c4" class="">138302 69151</blockquote><blockquote id="f4335ee9-0035-4866-9af7-4c16929f6f78" class="">138298 69149</blockquote><blockquote id="7e473216-e729-46ac-867a-d4b2e54f6a47" class="">138297 46099</blockquote><p id="b95eea43-b0d1-4791-8f78-804c631200fd" class="">
+</p><h3 id="6a41c860-4412-4ec5-9ccc-dddc73a17374" class="">5</h3><figure id="3fc016dc-7598-4c4b-84ad-034db7b69d84" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image15.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image15.png"/></a></figure><p id="40baaeaa-c40e-41be-a947-5d0c66fdbc76" class="">Ответ:</p><blockquote id="d1e48d33-2b61-49d1-9aa8-2ee0a8064c8b" class="">700005 233338</blockquote><blockquote id="bba3f418-23eb-4876-8689-e917d3b501dd" class="">700007 100008</blockquote><blockquote id="8f5f983e-92de-4a77-9528-9820ee8b244c" class="">700012 350008</blockquote><blockquote id="51dd138d-4cf2-4c9b-b179-5b03194b7592" class="">700015 140008</blockquote><blockquote id="2c101480-cb72-4624-bfff-7ad3f252d4b6" class="">700031 24168</blockquote><p id="fdd7b903-1fea-465a-b9f9-d4ddcdc4066a" class="">
+</p><h3 id="48c900bf-24f3-435e-a85a-0c70904a5e96" class="">6</h3><figure id="1cb7c768-62d3-47f7-a496-d498ce219f9f" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image9.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image9.png"/></a></figure><p id="f01a941f-b21f-4930-8ddc-d3bb2c805f21" class="">Ответ:</p><blockquote id="005dec66-d0ad-4996-b428-e9b768da9e65" class="">800120 400062</blockquote><blockquote id="ef8ac058-f982-439d-bc2e-d078ba99f640" class="">800253 266754</blockquote><blockquote id="9d146d86-80b0-46fa-831a-959473a7b270" class="">800273 21666</blockquote><blockquote id="924d381a-5826-4350-9980-1cd94ba9243d" class="">800375 160080</blockquote><blockquote id="8d1f07b9-7da8-4311-a5d5-23743d04d05d" class="">800396 400200</blockquote><p id="5bee38af-e3a3-4230-a344-93e97d67ac46" class="">
+</p><h3 id="9ce55e47-0740-4870-95f9-a895ca689549" class="">7</h3><figure id="9ed7f881-2aa7-471f-8b96-f6ad96b07b50" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image19.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image19.png"/></a></figure><p id="05f8bfd5-1293-4590-ade0-d752c47db87e" class="">Ответ:</p><blockquote id="5447e335-d4a7-46b7-b97f-95afb5feeec5" class="">500002 178</blockquote><blockquote id="754000cd-2b67-4653-af2f-c48a5e3ac477" class="">500004 18</blockquote><blockquote id="cf0e9645-3a4c-41db-b32f-059c207cdbb5" class="">500016 48</blockquote><blockquote id="e26ad67b-8eef-4e0e-99dc-fd34fa8d6b3d" class="">500018 58</blockquote><blockquote id="29592685-4312-4fd3-a4ad-6911c5a69564" class="">500020 4348</blockquote><p id="6222d010-34d8-4675-9d90-da23c5b791e3" class="">
+</p><h3 id="327897e0-c08f-45a6-be24-f9c5ba2573cb" class="">8</h3><figure id="ef0eefad-9fb4-4f3d-ae3c-28f4fb3083d9" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image12.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image12.png"/></a></figure><p id="2bca0684-c828-43bd-b42e-07320828c4d2" class="">Ответ:</p><blockquote id="b573eeff-2006-4c6e-adeb-221e8f36378e" class="">452025 150678</blockquote><blockquote id="ae00991e-0317-4e92-af36-ebbae38ac58b" class="">452029 23810</blockquote><blockquote id="9cff6033-fb81-44cb-961e-4250d983190d" class="">452034 226019</blockquote><blockquote id="d22300cc-5a7b-410e-a8dc-b3fe33940dfc" class="">452048 226026</blockquote><blockquote id="4709a4b7-4b9c-48f0-a202-1d7a945adf7f" class="">452062 226033</blockquote><p id="3c83595f-52c3-4b8a-b10c-0a18a9f0ae0c" class="">
+</p><h3 id="495245b0-3215-479b-9773-09102df61f8d" class="">9</h3><figure id="f9ff8622-477e-4783-aeda-0ff5a3b22ca8" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image5.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image5.png"/></a></figure><p id="bf4f01fa-ae9f-4e14-bdc0-d66749f1e2de" class="">Ответ:</p><blockquote id="93cdbfff-8889-455e-a678-d9b8368b296b" class="">136968 232631</blockquote><blockquote id="45b2eb22-b6a4-4dba-876a-415f59506fcc" class="">137126 97881</blockquote><blockquote id="e9de701a-400c-4b47-b1ac-3dbca1adf166" class="">137255 29736</blockquote><blockquote id="c017c332-7563-422b-a4ae-b9177104e410" class="">138778 69391</blockquote><p id="36b3a66a-1bb5-40f4-b856-9245e3c8f522" class="">
+</p><h3 id="a945179d-8e9e-411b-bb2b-33dc0d4a9b5a" class="">10</h3><figure id="b93e6433-c847-414a-aca1-31abebe605d6" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image16.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image16.png"/></a></figure><p id="830af275-a61c-42dd-afbf-9691109c1b87" class="">Ответ:</p><blockquote id="fcb72042-621f-43aa-a8ce-40b602e5d3e3" class="">250212 125108</blockquote><blockquote id="05b6c604-1ae3-49f9-b0fd-360fbde94ced" class="">250458 125231</blockquote><blockquote id="1ed15421-85cb-47f8-93c4-058eed1f90ed" class="">250593 83534</blockquote><blockquote id="17ade222-48e5-4eaa-81d7-ea868b99cf5f" class="">250621 35810</blockquote><blockquote id="df760db7-edec-455e-909e-d0b89fb8f044" class="">250704 125354</blockquote><p id="92998096-d65d-41db-aa6c-af3bc3ae9be5" class="">
+</p><h3 id="269d4f1b-59c5-4db8-9f8d-2412c06b7b7f" class="">11</h3><figure id="26e2b84a-cb9c-4789-b3be-468a0973bdd8" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image24.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image24.png"/></a></figure><p id="1bf456d8-30b0-4fd2-ae91-3338f92d5187" class="">Ответ:</p><blockquote id="5afc7836-c6e0-4294-99f3-0e4a3a14a8b2" class="">350308 26951</blockquote><blockquote id="558507a2-cea3-4fd4-acce-d651e2943f3e" class="">350321 630</blockquote><blockquote id="2e85ea1e-9498-419b-b883-9a1219fa84f2" class="">350333 138</blockquote><blockquote id="df35deaf-0e0a-4f20-a7f2-64d1fc692363" class="">350345 6198</blockquote><blockquote id="40d166b6-ec53-4d2b-92db-40062483d1e4" class="">350355 16172</blockquote><blockquote id="435a7477-2bfe-4109-b614-422ed24fed60" class="">350367 8984</blockquote><p id="abd50147-d2e2-4582-b3dc-c844d5cdacb4" class="">
+</p><h3 id="c66ca125-b09f-4ca3-8f17-9ad78c829e78" class="">12</h3><figure id="9c80d5b5-974c-4df3-bbdc-5f2195c1d7f8" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image17.png"><img style="width:700px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image17.png"/></a></figure><p id="08bcc803-fe72-4677-8edb-2847558f452e" class="">Ответ:</p><blockquote id="9628a567-b5c0-43ea-b9d1-a775508e836f" class="">1204328 948760</blockquote><blockquote id="6af8a989-9cc7-46f1-b5e9-5eac711a8b0a" class="">1204354 27530</blockquote><blockquote id="675b50d0-bb04-4b0e-a941-9a71abb84028" class="">1204356 1204380</blockquote><blockquote id="e991d1ca-7ce7-4fcb-b58d-d361311acc06" class="">1204360 1324880</blockquote><blockquote id="c7bd0a06-b9bb-447e-8eae-8a720d3f452a" class="">1204366 4850</blockquote><blockquote id="ef980b52-94f1-4212-9702-39bb322a4cfb" class="">1204370 291070</blockquote><blockquote id="1c52df1d-94c7-48f2-8420-0bfc72cc7f43" class="">1204378 172070</blockquote><p id="0c797d3b-dd9a-48cf-b935-d1ed35688d13" class="">
+</p><h3 id="310f0fb1-8b78-4fe6-a819-580246df5c42" class="">13</h3><figure id="d9cbc90f-f862-4ebd-9dd1-8ab2ac21f42b" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image.png"><img style="width:1360px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image.png"/></a></figure><p id="2d3919c3-70fd-4a69-aecc-8a1e32abaece" class="">Ответ:</p><blockquote id="018b0844-20ba-46d1-9ed7-786a3e833a5f" class="">700002 27</blockquote><blockquote id="0394e696-399e-4949-8892-3e4c248a571d" class="">700003 37</blockquote><blockquote id="13fabd79-fcc7-4f0a-ae2e-3a82d3a20c09" class="">700005 6087</blockquote><blockquote id="e06a0628-28bc-42f9-a2df-c37f017c15f9" class="">700007 77</blockquote><blockquote id="22240d26-8cdc-42bd-a8c1-a0b7e3499654" class="">700008 29167</blockquote><p id="fba81be0-e9d1-4049-a585-b3f32c4b7065" class="">
+</p><h3 id="062a442a-0b99-4c4c-931b-45a41d1e73e2" class="">14</h3><figure id="5cbe0d12-bbf9-49bf-bdc1-fe012c6f4494" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%201.png"><img style="width:1356px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%201.png"/></a></figure><p id="2ad32935-8d4c-4e8f-b8c7-49988396486c" class="">Ответ:</p><blockquote id="ba9df4bb-3c0c-4d8e-8a8f-dfbcc3626306" class="">800001 309</blockquote><blockquote id="4bbb04e9-2099-415f-87c4-440cd1abd71c" class="">800003 47059</blockquote><blockquote id="d978b4b7-ae26-4f8a-95b6-62388977016f" class="">800004 409</blockquote><blockquote id="fa7dda0f-3949-42d5-a0f3-3a11ccc649cf" class="">800006 269</blockquote><blockquote id="30652862-bf42-4f42-8a8c-1a823d4da36d" class="">800007 39</blockquote><p id="5feeffc8-b0b1-4bda-9030-464981d70593" class="">
+</p><h3 id="d18de076-508e-4688-a595-563c961e5dee" class="">15</h3><figure id="cf792d01-cfa2-46be-88e1-bee7ffea7ece" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%202.png"><img style="width:1369px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%202.png"/></a></figure><p id="63dee674-5d32-415a-bb59-46f830ab9403" class="">Ответ:</p><blockquote id="31197f9f-e1fb-41d7-8714-ccdd9a9c9ade" class="">700004 350004</blockquote><blockquote id="b8b698fd-bef1-4f9e-987a-058ccc4b3157" class="">700009 41194</blockquote><blockquote id="ae70d3ee-92e5-4942-bbef-25c060a89eaa" class="">700023 233344</blockquote><blockquote id="123168d0-b2ef-4f46-bf0c-8271757806b0" class="">700024 350014</blockquote><blockquote id="9341c2a0-1a8e-41fd-994e-94c16891d050" class="">700044 350024</blockquote><p id="c3318d94-9b76-4b24-8e82-d4a86dbcafb2" class="">
+</p><h3 id="f3ed1573-a9b7-4af2-9ae1-7ffd52eccd05" class="">16</h3><figure id="63871246-3643-456d-9180-78d3a851e847" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%203.png"><img style="width:708px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%203.png"/></a></figure><p id="8c05a24b-da68-4018-8dda-50dec9a663c2" class="">Ответ:</p><blockquote id="25b6baa6-a595-408d-be99-008cfb9c9fc3" class="">800004 400004</blockquote><blockquote id="243bca69-ade5-4549-9c33-9c433c634e7a" class="">800009 114294</blockquote><blockquote id="300953a8-846c-4c7a-8c00-8fc7610999b6" class="">800013 266674</blockquote><blockquote id="5f9314d4-cef1-4175-ab6a-86ebf45a2b1f" class="">800024 400014</blockquote><blockquote id="822033dd-f3a0-4658-886e-77aad02fecd6" class="">800033 61554</blockquote><p id="54a73383-5a0b-462f-aafb-1abf4a0d6a99" class="">
+</p><h3 id="8091263c-8bf6-43a9-b473-a62fc4602185" class="">17</h3><figure id="fb80f731-f750-4cf4-83af-f9a773d08c11" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%204.png"><img style="width:1360px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%204.png"/></a></figure><p id="94d97928-3622-47fc-b8a6-2a32047c2c38" class="">Ответ:</p><blockquote id="cd34ed5c-11f2-401c-840a-f7183efa83aa" class="">5 1879 9395</blockquote><blockquote id="3f180870-28f4-4501-86e8-f4b42c39286f" class="">37 127 4699</blockquote><blockquote id="0c0336b7-766d-4fd6-a14b-59351d73e18b" class="">3 1567 4701</blockquote><blockquote id="1de3d559-bc3c-44d7-8fcd-5441a01db5a1" class="">23 409 9407</blockquote><blockquote id="b272de73-b1a1-4466-9b80-fcc57cde6ee8" class="">5 941 4705</blockquote><blockquote id="42bdbbcc-1873-4e64-8618-8e55691265c1" class="">3 3137 9411</blockquote><p id="697c90d3-7936-4eb6-9113-9a382d28dd1f" class="">
+</p><h3 id="4e06a677-001f-4f12-9415-50e9da77bb2b" class="">18</h3><figure id="efbdf282-e026-441f-9eed-f00bd24bde1f" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%205.png"><img style="width:1359px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%205.png"/></a></figure><p id="949f8766-b91f-4ce9-8f9f-b43f78db267e" class="">Ответ:</p><blockquote id="abd640cd-2fb7-44bb-bbbd-465c6718911d" class="">4000004 3069310</blockquote><blockquote id="c3a95f54-3c38-4e1c-b042-20089a9de623" class="">4000050 5244510</blockquote><blockquote id="94d1ea5f-4592-45b3-9e92-6a2d8cdd9a05" class="">4000084 3636440</blockquote><blockquote id="d871a686-332b-49ec-8add-400516a0272b" class="">4000124 3170830</blockquote><blockquote id="11855a9e-cb5d-48af-9e85-dd69c073adec" class="">4000150 4135220</blockquote><blockquote id="55428b21-9c7d-4b9f-94bd-3e439535a7bb" class="">4000172 3636520</blockquote><blockquote id="de1757e2-1b9f-47d8-aaab-a35edcb52b74" class="">4000200 5800290</blockquote><p id="0993325c-db92-425c-9327-b283778425fd" class="">
+</p><h3 id="33e4b723-2c78-46c7-82b4-af7d8c8240f9" class="">19</h3><figure id="ba194da4-2aa8-40f7-99fa-d59b5da1760b" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%206.png"><img style="width:1363px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%206.png"/></a></figure><p id="a0f8717d-8fd1-4d7f-84e8-c090287c9e1b" class="">Ответ:</p><blockquote id="a69576da-c069-45b2-8c77-5aa2dc732148" class="">550014 275007</blockquote><blockquote id="1267be1e-d900-4bfb-b17e-864ae13cf33c" class="">550017 1567</blockquote><blockquote id="9a86c758-b4c1-41af-901f-e636719e1070" class="">550032 34377</blockquote><blockquote id="1fe6ad86-2826-47be-8a6e-ad97c3329d9d" class="">550035 110007</blockquote><blockquote id="3dbc665c-ee1e-43db-a98c-fb14446b4a29" class="">550037 9017</blockquote><p id="e3cd0212-8a9c-470f-a63e-456ae77663fe" class="">
+</p><h3 id="0bbb6809-406e-450d-b743-3b2ee7a564b2" class="">20</h3><figure id="47db416b-3281-4a58-b7d2-205662e909af" class="image"><a href="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%207.png"><img style="width:1358px" src="%D0%97%D0%B0%D0%B4%D0%B0%D0%BD%D0%B8%D0%B5%2025%20(%D0%B4%D0%B5%D0%BB%D0%B8%D1%82%D0%B5%D0%BB%D0%B8)%2063668b52dcbe423883552c584815b163/image%207.png"/></a></figure><p id="a00c6349-dafa-40d7-a7b4-3371a4afa971" class="">Ответ:</p><blockquote id="4d59f94e-0ea4-416c-a782-50ad6a0cf996" class="">1728</blockquote><blockquote id="0579d950-258c-4423-b2f5-19f023de1d33" class="">21632</blockquote><blockquote id="822aa6e4-14b5-4161-be1f-bd3c57e73e17" class="">1260</blockquote><blockquote id="4e7a85fe-07b0-428f-8e18-6711b6936e74" class="">1152</blockquote><blockquote id="422e2e3c-0258-4c57-8d31-aa01c992ff8a" class="">4127787</blockquote></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
