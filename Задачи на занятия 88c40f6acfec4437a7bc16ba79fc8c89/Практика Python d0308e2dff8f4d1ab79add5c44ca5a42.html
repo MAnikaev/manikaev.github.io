@@ -1,0 +1,1108 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Практика Python</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="d0308e2d-ff8f-4d1a-b79a-dd5c44ca5a42" class="page sans"><header><div class="page-header-icon undefined"><span class="icon">🤖</span></div><h1 class="page-title">Практика Python</h1><p class="page-description"></p></header><div class="page-body"><p id="1007d8af-a683-8020-a176-ea1ca861837d" class="">
+</p><h1 id="a3040fd8-27ce-4252-b78d-69fcf51a5809" class="">Можно вместо input() использовать конкретные значения чтобы не забивать ученикам этим голову (в ЕГЭ input() не используется)</h1><p id="1007d8af-a683-80ca-a15d-ec7895e4ab22" class="">
+</p><h1 id="ba5c2dd3-dfe2-49c3-a5d4-ef4761dd2537" class="">Типы данных</h1><h3 id="5d7e9163-c8dc-4b36-8c1b-3b742a49c707" class="">1</h3><figure id="cf18d606-3b87-4657-b901-2e161b92a736" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image26.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image26.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a9b48a7f-60d0-4654-9c79-d7c602d633ff" class="code"><code class="language-Python">print(&quot;Здравствуй, мир!&quot;)</code></pre><p id="a314423d-996a-4b82-b665-b8f2f36fc448" class="">
+</p><h3 id="2787af3d-76d4-4857-92e4-56d43701a79c" class="">2</h3><figure id="ba394b8c-49e5-4efa-b725-645c3fd6250c" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image100.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image100.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e4a978fb-5e2d-4ce8-bf42-a35dc219e81f" class="code"><code class="language-Python">print(4, 8, 15, 16, 23, 42)</code></pre><p id="f7ed1986-a40d-4ba9-addc-be4e7d086c91" class="">
+</p><h3 id="59b56bd7-ddce-409b-b802-8b5da95d1ee0" class="">3</h3><figure id="ab6c2160-b8f8-4656-860c-4a5fcb90c35d" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image51.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image51.png"/></a></figure><figure id="fbe7a093-2eeb-4867-a2fa-14b045515cb3" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image27.png"><img style="width:112px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image27.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="fd136c2d-4494-48c4-9755-d100f762f5b0" class="code"><code class="language-Python">print(&#x27;*&#x27;)
+print(&#x27;*&#x27; * 2)
+print(&#x27;*&#x27; * 3)
+print(&#x27;*&#x27; * 4)
+print(&#x27;*&#x27; * 5)
+print(&#x27;*&#x27; * 6)
+print(&#x27;*&#x27; * 7)</code></pre><p id="a5084298-a901-440b-a4de-a891d0d9a966" class="">
+</p><h3 id="ff2c3763-3825-43f0-ab8d-2dfabb7218d9" class="">4</h3><figure id="22b74f5e-bc5f-4d21-aded-5fd37d49e028" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image90.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image90.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8ed50304-770a-4f1b-91fb-1801b6ed6f7e" class="code"><code class="language-Python">team = input()
+print(team + &#x27; - чемпион&#x27;)
+
+#или (предпочтительнее)
+
+team = input()
+print(f&#x27;{team} - чемпион&#x27;)</code></pre><p id="42a7a8c8-266b-4025-a129-97a519016050" class="">
+</p><h3 id="0cf94936-c49f-4eb3-8f37-2c395ad3c09c" class="">5</h3><figure id="6174e8fe-6d11-489b-95b8-1a1db7b0720c" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image67.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image67.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="aaa9ab61-2e44-4682-9d75-3b52828d79e9" class="code"><code class="language-Python">n = int(input())
+print(n)
+print(n + 1)
+print(n + 2)</code></pre><p id="aab08907-0b4d-4b47-bd5e-0efcc12263ac" class="">
+</p><h3 id="0e32e4c3-2852-435f-9f18-8aaaba95fc3c" class="">6</h3><figure id="a4a1694e-aaf5-4a26-bd7f-9308bb93d046" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image3.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image3.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0d7fb411-0408-4a2d-8b6c-8b81cf0977ff" class="code"><code class="language-Python">a = int(input())
+b = int(input())
+c = int(input())
+print(a + b + c)</code></pre><p id="48801595-43c3-4bf9-b991-eeed3f14e276" class="">
+</p><h3 id="b7a612f0-7dd2-4e69-b072-233eecc1ccfe" class="">7</h3><figure id="2b773ea1-4aef-4fc3-9d7d-1670b174817b" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image25.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image25.png"/></a></figure><figure id="d81c2beb-8716-451b-bada-8125caef7694" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image59.png"><img style="width:128px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image59.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="0d6bf5b6-eb03-488e-a847-a8866af27d6e" class="code"><code class="language-Python">a = int(input())
+print(f&#x27;Объем - {a ** 3}&#x27;)
+print(f&#x27;Площадь - {6 * a ** 2}&#x27;)</code></pre><p id="21fc4b0f-c2a3-42e8-8b4f-f5022d240823" class="">
+</p><h3 id="91eaa907-5521-4f02-96b5-c2dd436dd301" class="">8</h3><p id="55aa0f45-06e3-489f-a1d8-879d3d585111" class="">На вход подается 4 числа - стоимость монитора, системного блока, клавиатуры и мыши.</p><figure id="12ea2c85-3276-49ef-b038-5a83a981d082" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image36.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image36.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5b7c1fca-b5f5-411d-aa41-5d00b31f26bb" class="code"><code class="language-Python">monitor = int(input())
+pc = int(input())
+keyboard = int(input())
+mouse = int(input())
+print(3 * (monitor + pc + keyboard + mouse))</code></pre><p id="47d6c6ce-121c-46a7-b32e-166933999415" class="">
+</p><h3 id="fd4d3cf7-4a73-499b-98d5-1139a100178b" class="">9</h3><figure id="041ece5e-3513-4b02-b049-1b09eaa3dcd6" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image101.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image101.png"/></a></figure><figure id="fdde490d-6904-4319-8158-92e0582df39b" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image74.png"><img style="width:184px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image74.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7f7e4906-facc-42a2-9d5c-d4d09cf513d7" class="code"><code class="language-Python">cm = int(input())
+print(cm // 100)</code></pre><p id="24233bb1-8073-4d13-8118-8e2f5dfe1bb1" class="">
+</p><h3 id="51cbdc16-77f2-41df-ade2-e53be1165285" class="">10</h3><figure id="11adb2d6-675c-4962-8e12-4256d799eef3" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image62.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image62.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d4292282-eb69-4ca8-8655-c145216fb65d" class="code"><code class="language-Python">a = float(input())
+b = float(input())
+print((a + b) / 2)</code></pre><p id="e5d84f7c-07a4-4869-8e48-82dbdc434b6c" class="">
+</p><h3 id="04b2f202-3d0a-4771-8363-87f94ae356e6" class="">11</h3><figure id="76f25627-1d67-47de-9370-badd1a6fc6ce" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image58.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image58.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d84633da-e935-4eec-b853-76cc6784a9ab" class="code"><code class="language-Python">years = int(input())
+days = years * 365
+hours = days * 24
+minutes = hours * 60
+seconds = minutes * 60
+print(years, days, hours, minutes, seconds)</code></pre><p id="11b5951a-cf1c-4ce0-8f0b-3b98a89c6642" class="">
+</p><h3 id="8297edfe-a2e9-441c-aea4-c30d0f6ba373" class="">12</h3><figure id="5a0d101b-1b0d-4c0b-b576-ff90f42b43d5" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image23.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image23.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="11bf60fb-d479-444e-b88d-3f07ca5bc303" class="code"><code class="language-Python">a = int(input())
+b = int(input())
+c = int(input())
+
+D = b ** 2 - 4 * a * c
+print(D)</code></pre><p id="e8db4981-06cf-4a8c-a067-723062dbd016" class="">
+</p><h3 id="89060684-6cc7-4264-a725-4685b4b4caf9" class="">13</h3><figure id="7540f46d-c92c-4448-9ae8-8a1d7d24b74e" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image1.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image1.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f740b3ad-edc4-4c03-8fca-5a12deb80d79" class="code"><code class="language-Python">s = input()
+print(len(s))
+
+#или
+
+print(len(input()))</code></pre><p id="8014f56e-ed91-43f8-8d99-afe1c5d42cf0" class="">
+</p><h3 id="32062a12-6d54-40e9-86ae-8051fcd5ebb7" class="">14</h3><figure id="117f835f-0ac8-4f7b-ab94-cdffff7279a4" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image13.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image13.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d478f38b-25cf-47e3-91ae-9bafd52d28f5" class="code"><code class="language-Python">#Способов много, например:
+a = 1 
+b = 2
+c = 3
+print(a * 100 + b * 10 + c)
+print(str(a) + str(b) + str(c))
+print(a * 0 + b * 0 + c * 0 + 123)</code></pre><p id="24837d01-138d-42a3-98e5-4f2063fec3ec" class="">
+</p><h3 id="7862816b-9f50-4bfc-b9a2-142bdc9686ba" class="">15</h3><figure id="0accd7da-b298-4551-b961-c3f10c5d127f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image38.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image38.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6a3a5488-6d89-4e70-815e-8b7bd3de1e09" class="code"><code class="language-Python">n = 123
+print(str(n)[0], str(n)[1], str(n)[2])
+#или
+print(n // 100, n % 100 - n % 10, n % 10 )</code></pre><p id="a1e4fea6-3def-4387-aa05-e75a06bc0ec8" class="">
+</p><h3 id="87de6ac5-aad7-4f7f-a3b6-de5457aafb4a" class="">16</h3><figure id="c57c847e-ebb6-4621-8bb2-af966ee7fe36" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image11.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image11.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f200c125-f5dd-42f7-8ba6-8fadae1b2009" class="code"><code class="language-Python">n = 123.9123
+print(int(n))</code></pre><p id="3d510ffe-9952-489f-a077-b4ac11bf6cb1" class="">
+</p><h3 id="abfbc148-bff2-49e4-8456-1a5205291d9b" class="">17</h3><figure id="69d44c73-923b-48ad-a9b7-91fd842b8a25" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image56.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image56.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5f08c422-0594-43c9-8efb-3b7aeb64b91a" class="code"><code class="language-Python">n = 123.123
+print(len(str(int(n))))</code></pre><p id="8f095538-e35a-4f2b-81ce-7022a9ce44d2" class="">
+</p><h3 id="c7bba31d-c936-46ac-9813-b0d3933a2257" class="">18</h3><figure id="23a1605c-c082-49b9-a0cb-1400167256b2" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image17.png"><img style="width:615px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image17.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ea9f091a-299d-4265-9a3a-772d929fa343" class="code"><code class="language-Python">n = 3 * 3125 ** 9 + 2 * 625 ** 8 - 4 * 625 ** 7 + 3 * 125 ** 6 - 2 * 25 ** 5 - 2024</code></pre><p id="04b88fe2-9a5a-4866-a77b-36eb8333ccb9" class="">
+</p><h3 id="56dafa3f-2118-459d-ae53-2f859adc6607" class="">19</h3><figure id="c28bad02-6999-49c4-9805-62fbeef049dd" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image97.png"><img style="width:429px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image97.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5ad24dcb-56cf-4e48-ac48-6ba7039d1765" class="code"><code class="language-Python">n = 361 * 2349 ** 84 - 89 ** 192 + 1953 ** 481 * 4843 ** 151</code></pre><p id="3728d0a5-23b2-4e1a-a409-bf9c1956598e" class="">
+</p><h3 id="1f929f5d-3049-4e88-ace8-88b3409d2cbe" class="">20</h3><figure id="7a0ec6e0-52df-4c4d-a1be-ad2b2f6d80a7" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image2.png"><img style="width:576px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image2.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d569ccb5-4149-4832-a419-654ab6fa0fa6" class="code"><code class="language-Python">n = 2 * 729 ** 333 + 22 * 243 ** 334 - 81 ** 335 + 2 * 27 ** 336 - 2 * 9 ** 337 - 338</code></pre><p id="85af1190-d7eb-4205-92b8-929df436bdb5" class="">
+</p><h3 id="79ccf264-379d-4454-b9db-d34605f4bf70" class="">21</h3><figure id="42e0532c-0a3b-4143-afbd-03e684e66d0b" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image86.png"><img style="width:263px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image86.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5db71e16-8bd9-463e-bddc-a2485f4a6172" class="code"><code class="language-Python">e = (1 + 9 ** (-4 ** (7 * 6))) ** (3 ** (2 ** 85))</code></pre><p id="7629cf3e-3b72-42ea-887b-d11d4871deac" class="">
+</p><h3 id="f811c4ac-aebe-44c2-87e3-0bcf4d9b8cf9" class="">22</h3><figure id="7ce21e9f-f682-4dfe-80fb-948c52045aa6" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image88.png"><img style="width:349px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image88.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="56bd6bf0-7c37-4a7f-802e-64f6d25b4565" class="code"><code class="language-Python">P = 1
+n = 1
+r = 1
+t = 1
+A = P * (1 + r / n) ** (n * t)</code></pre><p id="33b13422-c1ed-49ab-96ee-4c9f67957462" class="">
+</p><h3 id="c88d26ad-6ce6-4108-ae80-bde31ec964f0" class="">23</h3><p id="bf16edc3-f67d-4e2e-aeeb-37f89948ef0b" class="">На вход подается число n. Получите следующие строки</p><figure id="d240d466-cdc2-4c93-ae4a-0159585d5fe6" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image46.png"><img style="width:658px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image46.png"/></a></figure><figure id="9dda4752-5639-4f92-9b64-b784fe2f4d58" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image4.png"><img style="width:649px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image4.png"/></a></figure><figure id="f57b2d58-40d8-40c3-a56b-86bd3c176a75" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image83.png"><img style="width:648px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image83.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c7eecee9-d41f-4447-a6b1-350e0f781c75" class="code"><code class="language-Python">n = int(input())
+
+s1 = &#x27;5&#x27; + n * &#x27;2&#x27;
+s2 = &#x27;3&#x27; + n * &#x27;5&#x27;
+s3 = &#x27;9&#x27; + n * &#x27;4&#x27;</code></pre><p id="f8defb88-5003-40cc-b6b8-299d32b23baf" class="">
+</p><h3 id="533b9407-09f2-42be-8649-5970eec08b68" class="">24</h3><p id="31531687-2254-4e89-9066-63b037998e91" class="">На вход подается цифра x. Вставьте внутрь чисел эту цифру и получите значения выражений.</p><figure id="45d09dab-5083-4ab5-8c70-844f32429edd" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image96.png"><img style="width:348px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image96.png"/></a></figure><figure id="478634a2-ba09-415c-bab2-a5e54e3bd72f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image8.png"><img style="width:408px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image8.png"/></a></figure><figure id="ebe97d6b-facd-4e7b-9718-fee5b7e4fe0e" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image7.png"><img style="width:263px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image7.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="99a4af26-48a3-48aa-a1b1-3f7b6a0cd2cc" class="code"><code class="language-Python">x = 1
+print(int(f&#x27;78{x}79643&#x27;) + int(f&#x27;25{x}43&#x27;) + int(f&#x27;63{x}5&#x27;))
+print(int(f&#x27;931{x}964&#x27;) + int(f&#x27;4{x}51{x}1&#x27;) + int(f&#x27;2861{x}637&#x27;))
+print(int(f&#x27;8{x}38{x}68&#x27;) + int(f&#x27;37{x}3163&#x27;))</code></pre><p id="a4696761-f966-4a73-9cea-c5f1fe5f4986" class="">
+</p><h3 id="caa368a0-085f-4fe4-b507-369cc4ab170f" class="">25</h3><p id="92a82bbc-dfd8-460c-a770-2ada64b0bda8" class="">На вход подается число. Получите сумму первой и последней цифры этого числа</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3dacc9e1-f46d-4740-ab9a-733aa9cccf82" class="code"><code class="language-Python">n = 1923810391312
+print(int(str(n)[0]) + int(str(n)[-1]))</code></pre><p id="2db74f0e-a3b6-49b2-b147-cc45e1996ad9" class="">
+</p><h1 id="0b03fd96-ed91-49a5-98e8-8ee931f26cad" class="">Условные выражения</h1><p id="3b1c07ad-f9d8-4dfc-ab39-f050851ad6af" class="">
+</p><h3 id="0a6dd94c-3dd7-4918-836f-80da90059879" class="">1</h3><figure id="3661c0ea-639d-476e-aa2a-c29afbf5a126" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image35.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image35.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7b1f4b55-7728-4617-90d0-7360892116df" class="code"><code class="language-Python">name = input()
+
+if name[0] == &#x27;A&#x27;:
+	print(&#x27;YES&#x27;)
+	
+if &#x27;ан&#x27; in name:
+	print(&#x27;YES&#x27;)	</code></pre><p id="95e53bba-37e4-4453-86e0-c528798783ab" class="">
+</p><h3 id="048969d0-a90c-4622-8e23-1fd24b169c4f" class="">2</h3><figure id="5f4d460c-5a23-4e2f-b544-3f9748e88511" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image102.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image102.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="56c11b9e-ba98-4027-a757-ed84310ea3b3" class="code"><code class="language-Python">age = int(input())
+if age &gt;= 18:
+	print(&#x27;YES&#x27;)</code></pre><p id="bf3483f7-5524-4e1f-9930-8fdc66c3f5f7" class="">
+</p><h3 id="6d140926-d8f1-4a3f-9961-1b86c458d11c" class="">3</h3><figure id="d9a486b9-1fba-4097-9952-4b9abaf76ffd" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image85.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image85.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="be7bcd07-bdd6-468c-b169-89ca42a648b0" class="code"><code class="language-Python">print(&quot;Введите ваш баланс&quot;)
+balance = int(input())
+print(&quot;Введите сумму покупки&quot;)
+payment = int(input())
+
+if balance &gt;= payment:
+	print(&quot;Вы можете позволить себе эту покупку&quot;)
+else:
+	print(&quot;Вы не можете позволить себе эту покупку&quot;)</code></pre><p id="84078d46-c819-4399-b831-4b5e09fa6f72" class="">
+</p><h3 id="f1bb550a-1322-46d3-943e-94ce478606a3" class="">4</h3><figure id="fe309e35-df6f-4902-94a1-283769645364" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image98.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image98.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="79f87f16-307e-4ee3-b921-21cdd39af53c" class="code"><code class="language-Python">n = 123
+if n % 2 == 0:
+	print(&quot;Четное&quot;)
+else:
+	print(&quot;Нечетное&quot;)</code></pre><p id="535a747e-c0a2-4db6-94c6-1456526ffb2b" class="">
+</p><h3 id="4983e61f-271a-48eb-83ab-8be380aa449a" class="">5</h3><figure id="f9fe17ba-7b49-4240-880e-61747668cde7" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image54.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image54.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b0920bac-234c-415c-83fa-571fa3bd1bec" class="code"><code class="language-Python">a = int(input())
+b = int(input())
+if a + b == a * b:
+	print(True)
+else:
+	print(False)
+	
+#или
+
+print(a + b == a * b)</code></pre><p id="2aa5c91d-9689-4ce7-8129-652155cb8641" class="">
+</p><h3 id="f126241a-cc09-42fd-8d0f-0f10a15b5d4d" class="">6</h3><figure id="3c5596b5-2fd5-4a03-9e3d-79730962a7b5" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image29.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image29.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7ed7390d-c356-4e36-8d88-103107c369ec" class="code"><code class="language-Python">n = float(input())
+if 4.5 &lt;= n:
+	print(5)
+elif 3.5 &lt;= n &lt; 4.5:
+	print(4)
+elif 2.5 &lt;= n &lt; 3.5:
+	print(3)
+else:
+	print(2)</code></pre><p id="57ad6ed5-debd-4ae9-8412-bc4fdef3ab5b" class="">
+</p><h3 id="550f8528-6e4b-47f9-8506-6a1fa8011ee6" class="">7</h3><figure id="54cd40f9-d09e-4973-ad1e-51c032b80d42" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image89.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image89.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d97630e4-81d5-45dd-8b2b-9143c9154e25" class="code"><code class="language-Python">s1 = input()
+s2 = input()
+if len(s1) &gt; len(s2):
+	print(len(s1))
+else:
+	print(len(s2))</code></pre><p id="9c6029d0-0d84-4801-a7ce-b26e4d9a85a2" class="">
+</p><h3 id="83677072-3de9-4834-adeb-57c266226be9" class="">8</h3><figure id="3c900734-58b6-43d5-87a5-a727c9c480bd" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image14.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image14.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="abc4fdc0-c999-4548-92fd-3aa19d6e2399" class="code"><code class="language-Python">#мне впадлу это писать</code></pre><p id="551dccab-d564-45a7-8576-4738595cb6d4" class="">
+</p><h3 id="1318f757-89fa-4f6b-b524-ee9db7990012" class="">9</h3><figure id="7b20f116-4942-44b4-b7e3-4df4ed835749" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image15.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image15.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="df7d1902-4837-4a3a-aca4-fb3bf3d49409" class="code"><code class="language-Python">password = input()
+if len(password) &gt; 8 and password[0] == &#x27;S&#x27;:
+	print(&quot;Хороший пароль&quot;)</code></pre><p id="b695f532-8569-45f0-9cec-9b0a1c08ca11" class="">
+</p><h3 id="a5dcfd60-ab9b-4e62-a044-4f352469ddb3" class="">10</h3><figure id="9397f9d8-7a18-4c7b-aad1-39ed290f6501" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image16.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image16.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="86dd596c-0ead-4c8e-bb8b-753044c25321" class="code"><code class="language-Python">n = 123
+if n % 2 == 0:
+	print(&quot;YES&quot;)
+	
+if n % 3 == 0:
+	print(&quot;YES&quot;)
+	
+if n % 5 == 0:
+	print(&quot;YES&quot;)
+	
+if n % 3 == 0 and n % 5 == 0: # или n % 15 == 0
+	print(&quot;YES&quot;)</code></pre><p id="b3b7b305-161e-42d6-94b7-704042946644" class="">
+</p><h3 id="cf01d322-05cc-4de5-8c54-5e3464cda1f9" class="">11</h3><figure id="26e20a64-f898-4036-96d1-44c0d7029fe6" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image76.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image76.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ccfb4aad-5161-4393-b05d-a05989282473" class="code"><code class="language-Python">n = 123
+count = 0
+if str(n)[0] % 2 == 0:
+	count += 1
+if str(n)[1] % 2 == 0:
+	count += 1
+if str(n)[2] % 2 == 0:
+	count += 1
+print(count)</code></pre><p id="54da837c-90a0-4525-8833-ab56a66c257a" class="">
+</p><h3 id="11443e60-0351-4349-a377-1411a46f7b08" class="">12</h3><figure id="e1b8008c-e192-4971-ac6b-9c36adb67bd7" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image68.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image68.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="85b8d9df-e94d-4dfc-b9ee-6dc3bebba084" class="code"><code class="language-Python">n = 1234
+if n % 10 == 4:
+	print(&#x27;YES&#x27;)
+if str(n)[-1] == &#x27;4&#x27;:
+	print(&#x27;YES&#x27;)</code></pre><p id="fb88c655-3c25-4288-aaf6-898c42a1f070" class="">
+</p><h3 id="64e5e7b1-5d83-4cf5-b78c-46a0f8da530e" class="">13</h3><figure id="c562b026-ed0d-4acd-8507-4d538154df9a" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image49.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image49.png"/></a></figure><figure id="ce5fc5fc-2890-438c-aaf3-68791948e32f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image34.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image34.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5b55c8d4-1fd5-4fa6-ae16-c22ee82d3a1f" class="code"><code class="language-Python">x = int(input())
+if -30 &lt; x &lt;= -2 or 7 &lt; x &lt;= 25:
+	print(&quot;YES&quot;)</code></pre><p id="fe8ebfcd-9ef5-459e-b54f-55d72a7aaf34" class="">
+</p><h3 id="6f9e1fdc-7af1-435a-9688-a127dde1d267" class="">14</h3><figure id="4f5a5f8b-7ec6-47da-a6e4-054010ad03fd" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image80.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image80.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="46e7e851-2bb6-4dd2-851a-887029979416" class="code"><code class="language-Python">n = 1123
+if len(str(abs(n))) == 4 and (n % 7 == 0 or n % 17 == 0):
+	print(&#x27;YES&#x27;)</code></pre><p id="2d73fc70-491f-4b98-b2bd-882d6053b255" class="">
+</p><h3 id="9b1e0f93-3a86-469b-a165-b4bc42164b85" class="">15</h3><figure id="0bd49ebc-8975-42a8-bcd5-d2486ac003ee" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image93.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image93.png"/></a></figure><figure id="f0132920-e070-46b9-8b37-40f43dc0f01c" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image53.png"><img style="width:146px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image53.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7a7dd7b8-de6c-4350-9882-0854db5a7c73" class="code"><code class="language-Python">a = 1
+b = 2 
+c = 3
+if a + b &gt; c and a + c &gt; b and b + c &gt; a:
+	print(&quot;Exists&quot;)
+else: 
+	print(&quot;Not exists&quot;)</code></pre><p id="529c1812-5cce-45ba-81ca-d36f85f61a5b" class="">
+</p><h3 id="e5319545-e891-4f87-8821-ff821fe39ae0" class="">16</h3><figure id="cc7b9acf-930c-4d9f-a32f-fc1e7298a69f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image30.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image30.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="63a61791-25ef-4f6a-bedb-8c91d64efa24" class="code"><code class="language-Python">year = int(input())
+condition = year % 4 == 0 and yeat % 100 != 0 or year % 400 == 0
+print(condition)</code></pre><p id="77a24d6e-bfff-4d0a-b416-b74bec37277c" class="">
+</p><h3 id="fed8c98e-392a-4afe-b3e7-ccbe7b9a9e3e" class="">17</h3><figure id="379e80c3-d8c6-468f-b2f6-c94743fe6fc5" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image84.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image84.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4016f953-4640-46d7-9d47-8d2585c30d80" class="code"><code class="language-Python">#давайте сами, это душниловка</code></pre><p id="b0537ec4-797e-4bcb-a77b-457c92b24ffd" class="">
+</p><h3 id="37214a16-f2a2-4616-b15a-8ee02451b235" class="">18</h3><p id="09d338f8-b560-4aad-ad5b-0c7ee539b684" class="">Даны следующие логические выражения. Перепишите их используя Python, используя переменные x, y, z, w, содержащие значения True или False</p><figure id="beab8bc0-e0c1-4182-90a6-22e3fe0b9964" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image52.png"><img style="width:182px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image52.png"/></a></figure><figure id="5781e85c-aa23-477c-b0e2-f4306448c9c8" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image5.png"><img style="width:472px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image5.png"/></a></figure><figure id="872f2ead-9703-47d9-8709-95c3364806e8" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image55.png"><img style="width:413px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image55.png"/></a></figure><figure id="4e520ae3-95d1-4302-9564-743416d21fe2" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image19.png"><img style="width:288px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image19.png"/></a></figure><figure id="3da8c2c4-3790-47ed-842e-9737517dec8f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image92.png"><img style="width:280px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image92.png"/></a></figure><figure id="455b4e5b-5169-41a4-9cb2-21570ec6d4b0" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image65.png"><img style="width:344px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image65.png"/></a></figure><figure id="196b5f4c-144a-4bbb-8236-0388365e90de" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image63.png"><img style="width:263px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image63.png"/></a></figure><figure id="3c46cd64-d065-42a3-a447-2cc2e4e49fce" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image33.png"><img style="width:270px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image33.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="02799320-1cdf-4f22-bc3e-af2f78f70bd1" class="code"><code class="language-Python">x = 1
+y = 0
+z = 1
+w = 0
+
+(not z) and x or x and y
+((x and (not y)) &lt;= (z and w)) and ((y &lt;= z) or (w &lt;= x))
+((z &lt;= w) and (y == (not x))) &lt;= (u == (y or z))
+# дальше сами</code></pre><p id="6d7e8498-e881-4fc5-ba47-e4e062511b57" class="">
+</p><hr id="5374acdc-029a-4003-a747-b22a366f72c0"/><p id="7d553e92-d49f-4fac-8d84-7d307cc0c2cf" class="">
+</p><p id="3c804a24-0aaa-42b9-b75b-35eafe7fbd34" class="">Создайте переменные x, y, A и положите в них целые числа. Используйте их в выражениях</p><figure id="c4d07812-7427-42a6-b03e-89b292881d6f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image9.png"><img style="width:422px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image9.png"/></a></figure><figure id="781adeb8-1517-4f16-a21b-290a5c6afa61" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image44.png"><img style="width:399px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image44.png"/></a></figure><figure id="a7221b23-e3a1-4345-80bd-2ab1e3d944ff" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image70.png"><img style="width:379px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image70.png"/></a></figure><figure id="83adfbeb-b840-417e-aed2-0473f292976d" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image22.png"><img style="width:427px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image22.png"/></a></figure><figure id="5628a462-1860-4441-838a-0d7241c9d343" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image73.png"><img style="width:440px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image73.png"/></a></figure><p id="19e08239-5134-4606-9ff7-ece377c2c846" class="">,</p><figure id="f8c3eaf0-5825-432f-a58a-46560a87eb12" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image40.png"><img style="width:139px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image40.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b447a15c-fb9a-462e-8922-1202e3037c42" class="code"><code class="language-Python"># 5
+(x % 17 == 0) &lt;= ((not (80 &lt;= x &lt;= 100)) or (A &lt; x + 30))</code></pre><p id="694ea76c-2766-4218-b1a9-e8b6553dbcaf" class="">
+</p><h1 id="47d8df7e-213d-4d12-b404-14c2d26996fc" class="">Циклы</h1><h3 id="42ce7d44-fb59-4c2f-84be-7c4a19aefcc2" class="">1</h3><p id="7ec55bdb-ec37-42c8-beee-e592e5f1e950" class="">Пользователь вводит число n. Выведите в консоль все числа от 1 до n.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="349c9aae-2388-414b-8cf4-499b399ddfe5" class="code"><code class="language-Python">n = int(input())
+for i in range(1, n + 1):
+	print(i)</code></pre><p id="f55391ec-5d1f-4b92-bb4a-d9abea5540c7" class="">
+</p><h3 id="72b9924b-0081-4bae-a0e6-af60c0380407" class="">2</h3><p id="a6bbb9c9-62e7-4093-8af6-6a641320e0b4" class="">Пользователь вводит число n. Выведите в консоль сумму чисел от 1 до n.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="b8cc6fb8-cd7c-4389-b922-353bdf12a11b" class="code"><code class="language-Python">
+n = int(input())
+s = 0
+for i in range(1, n + 1):
+	s += i
+print(s)</code></pre><p id="e974c1a2-8ead-4b4f-8924-d60171f55943" class="">
+</p><h3 id="1efff53d-aefe-4794-b6ba-8cea133d04df" class="">3</h3><p id="b223dcae-9142-4d2a-8790-924f38a681dd" class="">Пользователь вводит число n. Выведите в консоль числа от 1 до n которые делятся на 7 и не делятся на 2.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="273f9693-32c1-4f21-ab52-9585c444a99e" class="code"><code class="language-Python">n = int(input())
+for i in range(1, n + 1):
+	if i % 7 == 0 and i % 2 != 0:
+		print(i)</code></pre><p id="382fab07-adfe-4bbe-83c7-228fa2c13172" class="">
+</p><h3 id="54e194b7-1bf5-49ea-a3a4-fc14f168c842" class="">4</h3><p id="1388f77c-2315-4ace-bb06-353cfd2ec101" class="">Пользователь вводит число n. Посчитайте, сколько чисел от 1 до n начинаются с цифр 42 и оканчиваются на 2.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f5a885a4-afd7-4da0-85c9-095d5e393185" class="code"><code class="language-Python">n = int(input())
+c = 0
+for i in range(1, n + 1):
+	if str(i)[0] == &#x27;4&#x27; and str(i)[1] == &#x27;2&#x27; and str(i)[-1] == &#x27;2&#x27;:
+		c += 1
+print(c)</code></pre><p id="e33f7001-b252-43c3-abf4-825a40d69a52" class="">
+</p><h3 id="6e0f88f3-d89f-4121-9baf-ad0755787eb6" class="">5</h3><p id="aaa34c45-6bef-4637-995a-cf26a678e4b7" class="">Пользователь вводит число n. Посчитайте сумму его цифр.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2643139b-7322-4622-9ff4-fb2e1cac4640" class="code"><code class="language-Python">n = int(input())
+s = 0
+for i in str(n):
+	s += int(i)
+print(s)</code></pre><p id="2dc383b1-879c-4462-b23d-b21c54db9883" class="">
+</p><h3 id="75432620-b6fc-47e2-9b10-479d07a52086" class="">6</h3><p id="bf4210f2-279a-430d-8c2e-03e9d49f8d5a" class="">Пользователь вводит число n. Выведите в консоль все его делители.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7557fc13-4a7a-4d0c-9a83-87963e14f55e" class="code"><code class="language-Python">n = int(input())
+for i in range(1, n + 1):
+	if n % i == 0:
+		print(i)</code></pre><p id="5774dc7b-25fc-4c9a-98de-52a697eebf81" class="">
+</p><h3 id="474f806c-fc4a-420e-952c-e26259f16b0e" class="">7</h3><p id="05d2077e-e402-4856-a37c-f6138fc9d7af" class="">Пользователь вводит число n. Определите, является ли число n простым.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="9b21bbc3-41ec-4c8e-aa09-0517f2416aef" class="code"><code class="language-Python">n = int(input())
+for i in range(2, n):
+	if n % i == 0:
+		print(False)
+		break
+else:
+	print(False)</code></pre><p id="03a5a855-58fd-459a-8646-ea7c3d6cb3cc" class="">
+</p><h3 id="5c5b3fc7-6a92-4b12-9239-b42157589568" class="">8</h3><p id="edf34f0a-efc3-4aa3-bc45-7caa4faf5468" class="">Пользователь вводит 10 чисел. Посчитайте сумму только положительных из них.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ca167925-f680-4630-95ce-459ef0b92a10" class="code"><code class="language-Python">res = 0
+for i in range(10):
+	n = int(input())
+	if n &gt; 0:
+		res += n
+print(res)</code></pre><p id="030c6b5b-0697-476b-94a8-4c2c1f409eed" class="">
+</p><h3 id="bba501f2-6881-45f1-9f26-97f04825f984" class="">9</h3><figure id="e0ded9ab-2d5d-4696-82fc-96ffa4b9d9ff" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image61.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image61.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="edbbfd39-4b35-4dd0-aaea-958fcf9153da" class="code"><code class="language-Python">n = int(input())
+for i in range(1, n):
+	if 5 &lt;= i &lt;= 9:
+		continue
+	if 11 &lt;= n &lt;= 33:
+		continue
+	if 99 &lt;= n &lt;= 100:
+		continue
+	print(i)</code></pre><p id="4da29b1d-3f03-449d-9a92-e0d1b7378460" class="">
+</p><h3 id="523b9ce7-4e38-4907-9972-94cae05ca188" class="">10</h3><figure id="93e67031-725b-4569-b03d-3ee8dff7dc06" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image64.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image64.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="78ef4437-8812-43ed-91c2-593b9297a43f" class="code"><code class="language-Python">n = int(input())
+while n &gt; 1:
+	n /= 2
+print(n == 1)</code></pre><p id="e020fc65-3612-40dd-88d2-789b9a8d3859" class="">
+</p><h3 id="2775de54-a0f8-4a7b-aa86-56e53b4ece19" class="">11</h3><figure id="b14d5ba7-ca61-4c65-8ea7-edf9838c5fef" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image95.png"><img style="width:600px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image95.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="646b5801-6b47-475b-9529-1797210693fa" class="code"><code class="language-Python">n = int(input())
+res = 1
+for i in range(1, n + 1):
+	res *= 1
+print(res)</code></pre><p id="37e52e64-8140-4d55-855a-9bda3ef424a4" class="">
+</p><h3 id="96e0d241-f32e-43ac-bb74-5f5092981d9c" class="">12</h3><figure id="fb2e3a4a-588f-4a2e-8de0-cc3bac7250b0" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image45.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image45.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="14f0c216-1d66-4951-96cc-2708ac28daa5" class="code"><code class="language-Python">n = int(input())
+for i in range(2, n + 1):
+	if n % i == 0:
+		print(i)
+		break</code></pre><p id="99ac836f-67a6-47f8-aae3-c8aaa0f3c5ae" class="">
+</p><h3 id="061d20ab-62ea-4ae2-9d15-b89a414d3c66" class="">13</h3><figure id="412d5edb-83c7-497e-a639-3c30d8116973" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image28.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image28.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2a5b687a-46b1-474f-8f68-f7388e096fe7" class="code"><code class="language-Python">n = int(input())
+for i in range(0, n + 1):
+	print(f&#x27;Квадрат числа {i} равен {i ** 2}&#x27;)</code></pre><p id="0643634b-4a09-4852-b5a5-d50a250a9de9" class="">
+</p><h3 id="0514c844-8248-45b6-b84a-5bbb27e0a367" class="">14</h3><figure id="980be505-a51a-4e48-ade6-32f37b19a037" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image77.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image77.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="7af63d75-008f-4b32-bdcd-764ded7c69bc" class="code"><code class="language-Python">n = int(input())
+res = 0
+for i in range(1, n + 1):
+	if i ** 2 % 10 == 2 or i ** 2 % 10 == 5 or i ** 2 % 10 == 8:
+		res += i
+print(res)</code></pre><p id="32498ab9-4ec6-48fd-b792-7ddb04bb56f7" class="">
+</p><h1 id="4ab8d35f-56bd-40e0-82c1-f38a0cf78c7f" class="">Строки</h1><h3 id="c3cb37e3-d954-43c2-83f7-86ba179c01b1" class="">Дана строка s</h3><h3 id="17ae9fc3-4dca-48e3-80b8-a227e7d301ad" class="">s = &quot;In 2010, someone paid 10k Bitcoin for two pizzas.&quot;</h3><h3 id="a5a65dd4-c73b-4c84-a798-09d60d55c01d" class="">Напишите следующие срезы</h3><p id="4db8fa0d-2bd4-4e93-9d70-65ea2aa565df" class="">
+</p><h3 id="a4b7fff6-ca9a-4cb2-baca-4edb9b142968" class="">1</h3><figure id="353470d6-51bf-4ed0-9cf7-e3ff82efe159" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image69.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image69.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="e09604d1-2e1a-41b1-b018-c87276dbc772" class="code"><code class="language-Python">print(s[:12])</code></pre><p id="b2768089-be1f-4776-b2bd-2dca3421bcca" class="">
+</p><h3 id="d3e6d24e-c366-4f2f-a156-fc8d355769cb" class="">2</h3><figure id="f917deb0-386e-4783-93ab-3068c424d9c1" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image75.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image75.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="5aa9f37f-2f83-4f14-bce0-5426683a1ca8" class="code"><code class="language-Python">print(s[-9:])</code></pre><p id="ae001418-c12f-4cf6-b3fc-ceecbe116fe2" class="">
+</p><h3 id="b7b18912-f28d-4e4f-b173-dee3118a9b58" class="">3</h3><figure id="02a0abbf-fc58-4b17-b7e0-103b26d7e13d" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image47.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image47.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3571797c-5505-42fe-9894-706ec0e150eb" class="code"><code class="language-Python">print(s[::7])</code></pre><p id="a1489e61-ed15-4b18-b640-bf7490c351c1" class="">
+</p><h3 id="0b33f30c-ba71-4d9d-81bf-915aaf2fa71f" class="">4</h3><figure id="e07b1547-7cd5-4a1f-afb0-695f43447010" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image18.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image18.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d3859e1b-e21d-4a37-ac20-77386f4a3447" class="code"><code class="language-Python">print(s[::-1])</code></pre><p id="205585ba-c9b9-4a6b-993f-e829ccdf3679" class="">
+</p><h3 id="e1935d9f-e546-46bf-8896-0f25c71dbeec" class="">5</h3><figure id="68fe0b97-fe0a-4b84-8150-baba7b66ca39" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image79.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image79.png"/></a></figure><figure id="04ee66d1-fb05-47de-aac1-43ce2c24abf4" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image48.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image48.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="80c57df0-b457-4a67-bb12-0178cd035d42" class="code"><code class="language-Python">s = input()
+print(s == s[::-1])</code></pre><p id="cc7a3eec-0e5c-4427-8c4b-9668e0e9e1ae" class="">
+</p><h3 id="c405e7e1-4a97-44ae-ba55-c6de2b4477c5" class="">6</h3><figure id="cffd42ca-6c37-4b32-867c-484922f331d2" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image31.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image31.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a0001c8e-5e3c-4323-bad2-475ecb556422" class="code"><code class="language-Python">
+s = input()
+print(len(s))
+print(s * 3)
+print(s[0])
+print(s[:3])
+print(s[-3:])
+print(s[::-1])
+print(s[1:-1])</code></pre><p id="f3a0e32d-fc03-49a3-bdf0-eac625ca21f9" class="">
+</p><h3 id="bf51f8e9-7624-489e-9eb8-9de95dcc70cf" class="">7</h3><figure id="6b7cbf58-a4f1-4e54-a8e3-e39e27446fd2" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image12.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image12.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6ef71a7b-500b-4f6b-9ef3-5a5e4c279292" class="code"><code class="language-Python">s = input()
+print(s.count(&#x27; &#x27;) + 1)</code></pre><p id="0ae29221-d487-43a2-8277-fa2cb0b143e7" class="">
+</p><h3 id="fce996e8-f530-479b-aece-5ba0cb2da6a6" class="">8</h3><figure id="f6ac2f3e-7142-4b94-96f6-efaa57fbdd86" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image81.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image81.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8f0694fb-bf90-4580-9fb1-54a691fdeb8c" class="code"><code class="language-Python">n = int(input())
+c = 0
+
+for i in range(n):
+	s = input()
+	if s.count(&#x27;11&#x27;) == 3:
+		c += 1
+print(c)</code></pre><p id="2f809570-57af-4fa8-a98b-70dec0b63eda" class="">
+</p><h3 id="2994dfc5-80c6-4058-8ba1-79f5650183ae" class="">9</h3><figure id="7fcb6e6b-d126-4cf9-ae72-75b65fbef8f6" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image99.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image99.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f4350df5-8354-4b63-84f5-cb641b484622" class="code"><code class="language-Python">s = input()
+count = 0
+for i in s:
+	if i in &#x27;0123456789&#x27;:
+		count += 1
+print(count)</code></pre><p id="3639b423-2103-4e84-886e-b317c5b52785" class="">
+</p><h3 id="6e89b861-7226-4752-964b-14fe3ee890b5" class="">10</h3><figure id="1f92b11f-5464-46f1-a0d1-aa18121dd551" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image32.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image32.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="97883f46-1603-4f7c-8d31-cb26ac654212" class="code"><code class="language-Python">s = input()
+if s.count(&#x27;f&#x27;) == 1:
+	print(s.index(&#x27;f&#x27;))
+elif s.count(&#x27;f&#x27;) &gt;= 2:
+	print(s.index(&#x27;f&#x27;), s.rindex(&#x27;f&#x27;))
+else:
+	print(&#x27;NO&#x27;)</code></pre><p id="31cc011b-adee-4785-b966-14b090329389" class="">
+</p><h3 id="a75e49ae-d936-4a25-b4aa-1eccbe014b7f" class="">11</h3><figure id="a3280eea-b17e-4b0a-9494-07dfb4ca6d74" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image60.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image60.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4ce40cc2-6ab5-4134-9d0d-72e238dac540" class="code"><code class="language-Python">s = input()
+lindex = s.index(&#x27;h&#x27;)
+rindex = s.rindex(&#x27;h&#x27;)
+s = s[:lindex] + s[rindex:]
+print(s)
+#Чето примерно такое, надо тестить +-1 в индексах делать</code></pre><p id="37cee2f8-c35a-466b-9e43-33ae6ec80cea" class="">
+</p><h3 id="92f0941e-188f-4111-9c58-331fc19bc98e" class="">12</h3><p id="995afc86-5fc1-4bcf-ac98-19cb604d8f9f" class="">Дан следующий фрагмент кода на русском языке. Перепишите его под Python. Подразумевается, что операции ‘нашлось’ и ‘заменить’(1 раз) применяются к строке s = input()</p><figure id="9b75a8ae-21ae-42d8-9780-2120db20096d" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image6.png"><img style="width:597px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image6.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="909e2856-2fba-442b-a287-b7a8f71e36b7" class="code"><code class="language-Python">s = input()
+while &#x27;52&#x27; in s or &#x27;2222&#x27; in s or &#x27;1122&#x27; in s:
+	if &#x27;52&#x27; in s:
+		s = s.replace(&#x27;52&#x27;, &#x27;11&#x27;)
+	if &#x27;2222&#x27; in s:
+		s = s.replace(&#x27;2222&#x27;, &#x27;5&#x27;)
+	if &#x27;1122&#x27; in s:
+		s = s.replace(&#x27;1122&#x27;, &#x27;25&#x27;)
+print(s)
+#Дальше сами</code></pre><p id="e9d882d3-cff6-48f8-a896-2ee08d3bfd6d" class="">
+</p><h3 id="4fe926d1-82db-4daf-9cb7-db813185ca9e" class="">13</h3><figure id="10f1cfce-6e02-40d1-a4f8-740e9021ccac" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image20.png"><img style="width:596px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image20.png"/></a></figure><p id="afeb616f-1808-4e2e-8577-3f4538a5311f" class="">
+</p><h3 id="5068d478-3e40-4d28-8eaf-3f1a06bf810a" class="">14</h3><figure id="c9085d6c-6736-4fed-8718-e64e8b3be7a0" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image42.png"><img style="width:541px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image42.png"/></a></figure><p id="4087d8bd-94db-4265-b18a-bcd298447a07" class="">
+</p><h3 id="9d061907-e1d1-4b80-bedf-cf94e3b45745" class="">15</h3><figure id="86a84194-74e3-43f8-b6b9-7a42b10d063f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image43.png"><img style="width:570px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image43.png"/></a></figure><p id="7ba9082a-1891-4e2c-9cdb-821433880f1d" class="">
+</p><h3 id="17108f17-3084-4691-a058-31d330512c60" class="">16</h3><figure id="b6c5c90b-bfd2-4fb0-abe9-ce1a6199a5cc" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image87.png"><img style="width:604px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image87.png"/></a></figure><p id="c89e0d25-be1e-47ba-9c9b-bb506d3097f1" class="">
+</p><h3 id="b71b91be-a889-45a4-be09-1ea1aa948157" class="">17</h3><figure id="eb956386-60cb-4fd5-8a1e-d5865fc4dbe3" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image21.png"><img style="width:578px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image21.png"/></a></figure><p id="76d475d5-cb47-450a-95da-3bc10042dfa9" class="">
+</p><h1 id="f9b2f53f-3b2b-430b-9167-67fddff38d48" class="">Списки</h1><p id="135eed07-0f53-41da-a8d3-e14fa61dbc28" class="">
+</p><h3 id="4a0688ae-8e55-445e-9f12-c657271132ce" class="">1</h3><p id="a6dc7547-0de3-47f1-952f-b03e9596e9a6" class="">Создайте список и занесите туда числа от 1 до 100</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4ffbce2b-c1a1-42ea-a347-8a67e90fe416" class="code"><code class="language-Python">l = []
+for i in range(1, 101):
+	l.append(i)
+# ИЛИ
+l = [i for i in range(1, 101)]</code></pre><p id="89085878-2df8-4b09-a065-2bec6468c912" class="">
+</p><h3 id="a5861669-a065-4f57-bfce-0c6e6c77d41d" class="">2</h3><figure id="e1eeddb0-c609-40b5-bc2f-9ba68fae8c9e" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image72.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image72.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="bd1e81ec-3fb5-4ea5-86c6-905d3702e453" class="code"><code class="language-Python">alphabet = &#x27;abcdefghijklmnopqrstuvwxyz&#x27;
+n = int(input())
+l = list(alphabet[:n])
+print(l)</code></pre><p id="59c1571f-cc82-4bbf-b92b-42849a53b08c" class="">
+</p><h3 id="656a0e25-37e4-4030-a281-e34d35bf70b6" class="">3</h3><p id="84755cd0-5901-48e0-978a-210c1cf31d45" class="">Дан следующий список. Получите сумму максимального и минимального элементов списка</p><p id="dc246247-72e1-48a3-b6df-66a7276be36f" class="">numbers = [12.5, 3.1415, 2.718, 9.8, 1.414, 1.1618, 1.324]</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4da2b77e-36fa-40cd-a803-be0d34e58aad" class="code"><code class="language-Python">print(min(numbers) + max(numbers))</code></pre><p id="a10936a5-93a6-4be2-8f2f-e4e072971470" class="">
+</p><h3 id="e601724b-6f89-4122-bf0b-7ff9c3cee5e6" class="">4</h3><p id="57b86fd0-9c94-4549-8759-bfaf6dab51cc" class="">Дан следующий список. Получите его среднее арифметическое</p><p id="72bb63a2-a18f-4091-9a15-8a7066e1bcaa" class="">evens = [2, 4, 6, 8, 10, 12, 14, 16, 18, 20]</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="78912ce8-0b6e-4ace-a1b1-063d1cb6219e" class="code"><code class="language-Python">print(sum(evens) / len(evens))</code></pre><p id="8b710a07-ce85-4127-bcea-5076e4aa7621" class="">
+</p><h3 id="0cf6eb8d-2905-4884-b45e-031769a685b2" class="">5</h3><p id="c382ee5c-eee9-40fd-acda-903237a8cf78" class="">Пользователь вводит несколько чисел на 1 строке.</p><p id="1907bdb1-aa60-4a25-85dd-103d424ce37f" class="">Напишите код, чтобы он:</p><figure id="7875160f-103f-4c74-b209-d6adefa69175" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image10.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image10.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="59b95858-9758-45ac-bad5-6a9c4582f6a5" class="code"><code class="language-Python">nums = [int(i) for i in input().split()]
+print(len(nums)
+print(nums[-1])
+print(nums[::-1])
+print(&#x27;YES&#x27; if 5 in nums and 17 in nums else &#x27;NO&#x27;)
+</code></pre><p id="d4cbdab4-ac4d-4ca9-85b8-fcb3e8550428" class="">
+</p><h3 id="02525ca8-5d3e-471f-b533-9356b6a8572e" class="">6</h3><figure id="d17146e3-db08-446b-ae6e-b40fda4d9d99" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image94.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image94.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c94552e5-bb5c-4279-96ce-5fe501cec69c" class="code"><code class="language-Python">n = int(input())
+res = []
+for i in range(1, n + 1):
+	if n % i == 0:
+		res.append(i)
+print(res)
+# или
+res = [i for i in range(1, int(input()) + 1) if n % i == 0]</code></pre><p id="504e1ebe-8e74-4229-aae6-6043a510fa89" class="">
+</p><h3 id="673ea464-98e8-4665-8fdf-4ea1af3ae0f7" class="">7</h3><p id="78df8d54-13e5-45a2-b943-1288de8df495" class="">На вход подается несколько слов на одной строке через ‘;’. Получите список символов всех этих слов.</p><p id="4a9608af-252f-4468-bf53-4ca032c7bee5" class="">Пример:</p><p id="61f0eedd-15ab-486b-8a0b-0a1aa08b18a4" class="">Вход:</p><p id="ff2de272-eafd-480b-98dc-2417eaf5d53e" class="">крутая;тестовая;строка</p><p id="163a884c-03b9-4705-a0a8-57ed826aef12" class="">Выход:</p><p id="cf760a27-b887-41d2-9f9c-2b3566c95c83" class="">[&#x27;к&#x27;, &#x27;р&#x27;, &#x27;у&#x27;, &#x27;т&#x27;, &#x27;а&#x27;, &#x27;я&#x27;, &#x27;т&#x27;, &#x27;е&#x27;, &#x27;с&#x27;, &#x27;т&#x27;, &#x27;о&#x27;, &#x27;в&#x27;, &#x27;а&#x27;, &#x27;я&#x27;, &#x27;с&#x27;, &#x27;т&#x27;, &#x27;р&#x27;, &#x27;о&#x27;, &#x27;к&#x27;, &#x27;а&#x27;]</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-8026-98f9-cb8bbc88707c" class="code"><code class="language-Python">s = input().split(&#x27;;&#x27;)
+res = []
+for i in s:
+	res.extend(list(i))
+print(res)</code></pre><h3 id="8641943e-0c6f-4a98-af03-6244fade3551" class="">8</h3><figure id="8cd53ba8-1dff-42cb-a93e-0706485eed19" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image37.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image37.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="eb05fced-6542-4e9e-b253-b3ad2b6c9af1" class="code"><code class="language-Python">fio = input().split()
+res = &#x27;&#x27;
+for i in fio:
+	res += i[0]</code></pre><p id="46ae1e0e-8b37-449d-8537-eac7e4e7a416" class="">
+</p><h3 id="22843f54-a4a3-43bb-b604-8f00ff455cba" class="">9</h3><figure id="3e2247cd-f8e3-4c9a-8668-0ae5e6212c72" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image39.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image39.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-80d5-a657-f2aba1bc824e" class="code"><code class="language-Python">ip = input().split(&#x27;.&#x27;)
+for i in ip:
+	if not 0 &lt;= int(i) &lt;= 255:
+		print(False)
+		break
+else:
+	print(True)</code></pre><p id="e6405bf4-6ca2-4086-af1b-f4d321ab42c4" class="">
+</p><h3 id="8cb4407b-846f-488d-be9c-4ee6a963f90e" class="">10</h3><figure id="7d0fed83-e2e9-4c62-8834-b279adcd8dff" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image71.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image71.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-80e5-9e9d-d87990e6297c" class="code"><code class="language-Python">nums = [int(i) for i in input().split()]
+max_index = nums.index(max(nums))
+min_index = nums.index(min(nums))
+mx = max(nums)
+mn = min(nums)
+nums[max_index] = mn
+nums[min_index] = mx
+print(nums)</code></pre><p id="438237d2-d181-40a5-9458-4aaa95a599e6" class="">
+</p><h3 id="d7690e10-4084-418b-aed9-b93b898ef9dd" class="">11</h3><figure id="be7fa4fa-08c1-4a55-b6e0-766679c28d8c" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image24.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image24.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d5bcc64e-f80f-4a87-8f5c-0d89f3e96150" class="code"><code class="language-Python">s = input().split()
+print(s.count(&#x27;a&#x27;) + s.count(&#x27;an&#x27;) + s.count(&#x27;the&#x27;))</code></pre><p id="8ca86757-b0cf-4335-9f50-882789bd6042" class="">
+</p><h3 id="6ea45dde-93e2-4bb7-ab5e-75dd4118af61" class="">12</h3><p id="2ac27c97-9ea4-4a2f-8b07-49aba2138d98" class="">С помощью списочных выражений получите список чисел от 1 до 100</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-80a9-bcac-e5f8b868c4a6" class="code"><code class="language-Python">l = [i for i in range(1, 101)]</code></pre><p id="0ef97dca-d7b8-440c-9b9d-9b7d4c7c8800" class="">
+</p><h3 id="b7249d27-b25f-4c46-b9d1-f33a75caeb9f" class="">13</h3><p id="89300ada-17fc-4865-bed3-4c0f43e3462c" class="">С помощью списочных выражений получите список нечетных чисел от 1 до 100 которые делятся на 7</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="8b884fd3-6f40-4dbf-8c60-ad32792c23c7" class="code"><code class="language-Python">l = [i for i in  range(1, 101) if i % 7 == 0 and i % 2 != 0]</code></pre><p id="ef1b222a-6f92-43c2-9db4-e4538d136dd0" class="">
+</p><h3 id="e56af29a-697b-4255-9b6a-90266c6202f6" class="">14</h3><p id="6ef9d7eb-1957-4e84-9c95-c97f17e8ec1b" class="">На вход подается строка, состоящая из нескольких слов, разделенных пробелами. С помощью списочных выражений получите список слов с удаленными первыми буквами.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-807e-aea5-df4246ae359f" class="code"><code class="language-Python">s = input().split()
+l = [i[1:] for i in s]</code></pre><p id="f148e1bb-f371-4a13-a081-b68fc843e83d" class="">
+</p><h3 id="e794c05c-a4ba-4330-9964-9fa5fb113848" class="">15</h3><p id="e40bfc33-a809-4af1-944c-57ead697f344" class="">На вход подается строка, состоящая из нескольких слов, разделенных пробелами. С помощью списочных выражений получите список длин этих строк.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="a9a6f5dc-f5a7-4dfe-ad59-5c72ea8c9309" class="code"><code class="language-Python">s = input().split()
+l = [len(i) for i in s]</code></pre><p id="9212969d-155e-4a80-83f9-fb4065d58d03" class="">
+</p><h3 id="a520cd7b-452a-4182-a743-8745d12a2348" class="">16</h3><p id="0cdc09a3-aed4-4b90-8bfd-6cf1fd9f7191" class="">На вход подается строка, состоящая из нескольких слов, разделенных пробелами. С помощью списочных выражений получите список только из слов длиннее 5 символов.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-8063-b19e-d4727ba436f0" class="code"><code class="language-Python">s = input()
+l = [i for i in s.split() if len(i) &gt; 5]</code></pre><p id="84c514f8-f905-4f07-afd0-12fcb2962c45" class="">
+</p><h3 id="0c787abe-2409-4a7d-8150-4daf50ceb37f" class="">17</h3><p id="9fc32663-4c4b-478f-b888-ad442aa16ffd" class="">На вход подается строка состоящая из нескольких чисел разделенных пробелами. С помощью списочных выражений получите список повторений каждого числа.</p><p id="7fac7390-260e-4137-94c6-9c0ee4012500" class="">Пример:</p><p id="d4501e9a-e2bb-427b-9381-4a433cace6f3" class="">Вход:</p><p id="7313a4c5-5ed5-45eb-8959-9e95560760f5" class="">1 2 2 3 3 3 4 5 9</p><p id="f88f0f5d-8253-403f-99c6-8210244f4f58" class="">Выход:</p><p id="de7c59df-69f7-4e1f-9506-f19fe6aae737" class="">[1, 2, 2, 3, 3, 3, 1, 1, 1]</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="f025482f-49f7-4508-a3f9-f6dbe12a5a49" class="code"><code class="language-Python">nums = [int(i) for i in input().split()]
+l = [nums.count(i) for i in nums]</code></pre><h1 id="26b00166-0a95-4ab4-90f8-b7ddd878eb66" class="">Функции</h1><p id="29667d9f-1e2c-4d2b-a670-4378d6dfbb79" class="">
+</p><h3 id="544a91b7-bba8-4032-96b6-d28aa734530d" class="">1</h3><figure id="1cbaf90b-0a8f-488d-9272-b5b2c6a78cfa" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image78.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image78.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="2c8fcaaf-cba9-4a2d-9e12-7b77455408b8" class="code"><code class="language-Python">def convert_to_miles(km):
+	return km * 0.6214</code></pre><p id="bcbbc022-afaf-4ae3-858c-a0fca3607476" class="">
+</p><h3 id="7ba670e1-7e0c-4725-8dd3-f6cd1e5b56c5" class="">2</h3><figure id="e02021d1-2312-446f-b2d7-f60b3fa73609" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image41.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image41.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="19e89371-85ad-4237-ae85-00a27af9e9fc" class="code"><code class="language-Python">def get_factors(num):
+	res = []
+	for i in range(1, num + 1):
+		if num % i == 0:
+			res.append(i)
+	return res</code></pre><p id="a4c9f9bd-28d4-4323-89e1-c3ed3968410a" class="">
+</p><h3 id="685b130e-4d56-440a-9b6b-5846be3d48cf" class="">3</h3><figure id="df3fa629-28b7-4b38-b5cb-7033e4e13974" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image66.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image66.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-80ad-be02-eebef30b71d1" class="code"><code class="language-Python">def number_of_factors(num):
+	count = 0
+	for i in range(1, num + 1):
+		if num % i == 0:
+			count += 1
+	return count</code></pre><p id="ac02c1d3-ae5b-4b34-8149-bbc47ee2d1c4" class="">
+</p><h3 id="d0414119-cc09-466e-a49f-eeecb59959d6" class="">4</h3><figure id="437652b9-e178-4005-876a-15222d9f720f" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image82.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image82.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6e37cf9b-8bcb-4c50-95a8-9be1a07c0ed2" class="code"><code class="language-Python">def is_valid_triangle(side1, side2, side3):
+	return side1 &lt; side2 + side3 and side2 &lt; side1 + side3 and side3 &lt; side2 + side1 </code></pre><p id="5cc01088-57bd-4b77-8202-e07a9ff6a8fa" class="">
+</p><h3 id="506ca7d7-b351-4b47-81e8-0df2357a3604" class="">5</h3><figure id="6668453f-2ee2-4a07-a254-a61a95a668e5" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image50.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image50.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="275dd420-f993-4a98-8a10-4b579ecdfefd" class="code"><code class="language-Python">def is_prime(num):
+	for i in range(2, num):
+		if n % i == 0:
+			return False
+	return True</code></pre><p id="25f7befb-b7f3-47c6-aa65-745af764ae81" class="">
+</p><h3 id="2d90fa54-acb3-4f01-976f-527548ac5159" class="">6</h3><figure id="226e961c-ebbd-464a-8f7f-cf79117d2971" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image91.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image91.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-808c-a659-cc52e94e390a" class="code"><code class="language-Python">def is_palindrome(text):
+	return text == text[::-1]</code></pre><p id="0167a2b6-0fde-44ae-87b5-1bf40fde541a" class="">
+</p><h3 id="503cfc2f-0887-4d4e-a865-7cb6905577da" class="">7</h3><figure id="3fda107b-047f-4a9e-8a89-e2ac1a77225c" class="image"><a href="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image57.png"><img style="width:700px" src="%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D0%BA%D0%B0%20Python%20d0308e2dff8f4d1ab79add5c44ca5a42/image57.png"/></a></figure><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="16de8cb7-fcaf-4924-b93e-3050f554d00c" class="code"><code class="language-Python">def get_circle(radius):
+	return 2 * 3.14 * radius, 3.14 * radius ** 2</code></pre><p id="995bf4a6-8849-4d27-8d18-482cb11ab393" class="">
+</p><h3 id="e920b1c4-9cf8-4bb6-b30f-54df8052aa6f" class="">8</h3><p id="5d1654bb-b747-4c8b-822a-d215dbb5bbd6" class="">Напишите функцию которая возвращает факториал числа.</p><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1007d8af-a683-80e4-93b1-f3a2ddaff9b5" class="code"><code class="language-Python">def factorial(num):
+	res = 1
+	for i in range(1, num + 1):
+		res *= i
+	return res</code></pre></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
